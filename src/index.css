@@ -1,0 +1,20 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+body {
+  background-color: #f1f5f8;
+  padding-top: 70px;
+}
+
+.mr-center {
+  margin: 0 auto;
+  width: max-content;
+}

@@ -1,0 +1,21 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.search {
+  width: 50%;
+  height: 60px;
+  background-color: #f1f5f8;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 3px solid #bcccdc;
+  padding: 20px;
+  margin-bottom: 48px;
+}
+
+.load {
+  width: max-content;
+  margin: 50px auto;
+}

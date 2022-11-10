@@ -1,0 +1,35 @@
+.card {
+  background-color: #ffffff;
+  padding: 10px 16px;
+  box-shadow: 0 2px 5px gainsboro;
+  flex-basis: calc(50% - 10px);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: max-content;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 700;
+  word-spacing: 4px;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+}
+
+.info {
+  color: #617d98;
+  font-weight: 200;
+}
+
+.readmore {
+  color: rgb(122, 122, 255);
+  text-decoration: none;
+}
+
+.remove {
+  margin-left: 15px;
+  color: rgb(255, 79, 79);
+  border: 0;
+  background-color: transparent;
+}
