@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Hit.module.css";
 import PropTypes from "prop-types";
 
-const Hit = ({ hit }) => {
+const Hit = ({ hit, handleClick }) => {
   return (
     <div className={styles.card}>
       <div className={styles.title}>{hit.title}</div>
@@ -13,7 +13,14 @@ const Hit = ({ hit }) => {
         <a href={hit.url} className={styles.readmore}>
           Readmore
         </a>
-        <button className={styles.remove}>Remove</button>
+        <button
+          className={styles.remove}
+          onClick={() => {
+            handleClick(hit.objectId);
+          }}
+        >
+          Remove
+        </button>
       </div>
     </div>
   );

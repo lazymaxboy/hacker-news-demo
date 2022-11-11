@@ -6,15 +6,29 @@ import { useGetNews } from "./useGetNews";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
-  const { hits, page, totalPage, nextPage, prevPage, loading } = useGetNews();
-
+  const { hits, page, totalPage, nextPage, prevPage, loading, setHits } =
+    useGetNews();
+  const search = (e) => {
+    const value = e.target.value;
+    const title = hits.filter(
+      (hit) => hit.title.toUpperCase().indexOf(value.toUpperCase()) > -1
+    );
+    return value.length > 0 ? setHits(title) : setHits(hits);
+  };
   return (
     <div className={styles.container}>
       <h1>
         <b>Search Hacker News</b>
       </h1>
       <br />
-      <input type="text" className={styles.search} placeholder="REACT" />
+      <input
+        onKeyUp={(e) => {
+          search(e);
+        }}
+        type="text"
+        className={styles.search}
+        placeholder="REACT"
+      />
       <div className="mr-center d-flex align-items-center gap-3">
         <button className="btn btn-info text-white" onClick={prevPage}>
           Prev
@@ -29,12 +43,12 @@ function App() {
       <br />
       {loading ? (
         <div className={styles.load}>
-            <div className="spinner-border text-success" role="status"></div>
+          <div className="spinner-border text-success" role="status"></div>
         </div>
       ) : (
         <div>
           <br />
-          <HitList hits={hits} />
+          <HitList hits={hits}/>
         </div>
       )}
     </div>
