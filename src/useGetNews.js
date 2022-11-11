@@ -3,6 +3,7 @@ import { getNews } from "./services/news.services";
 
 export const useGetNews = () => {
   const [hits, setHits] = useState([]);
+  const [all, setAll] = useState([]);
   const [query, setQuery] = useState("React");
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(0);
@@ -13,6 +14,7 @@ export const useGetNews = () => {
     getNews({ query, page }).then(({ hits, nbPages }) => {
       setTotalPage(nbPages);
       setHits(hits);
+      setAll(hits);
       setLoading(false);
     });
   }, [query, page, getNews]);
@@ -24,5 +26,14 @@ export const useGetNews = () => {
     else setPage(page - 1);
   };
 
-  return { hits, page, totalPage, nextPage, prevPage, loading, setHits };
+  return {
+    hits,
+    page,
+    totalPage,
+    nextPage,
+    prevPage,
+    loading,
+    setHits,
+    all,
+  };
 };

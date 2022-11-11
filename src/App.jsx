@@ -6,14 +6,24 @@ import { useGetNews } from "./useGetNews";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
-  const { hits, page, totalPage, nextPage, prevPage, loading, setHits } =
-    useGetNews();
+  const {
+    hits,
+    page,
+    totalPage,
+    nextPage,
+    prevPage,
+    loading,
+    setHits,
+    all,
+  } = useGetNews();
+
   const search = (e) => {
     const value = e.target.value;
     const title = hits.filter(
       (hit) => hit.title.toUpperCase().indexOf(value.toUpperCase()) > -1
     );
-    return value.length > 0 ? setHits(title) : setHits(hits);
+
+    return value.length > 0 ? setHits(title) : setHits(all);
   };
   return (
     <div className={styles.container}>
@@ -48,7 +58,7 @@ function App() {
       ) : (
         <div>
           <br />
-          <HitList hits={hits}/>
+          <HitList hits={hits} />
         </div>
       )}
     </div>
