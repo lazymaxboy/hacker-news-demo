@@ -15,14 +15,6 @@
 
 ## Main concepts
 
-- Nguyên tắc trong việc hình thành redux:
-
-1. Tất cả các trạng thái của ứng dụng đều được lưu trữ từ 1 kho.
-2. Các trạng thái đều chỉ phải read-only
-3. Các thay đổi phải thông qua pure functions.
-
-![alt](https://images.viblo.asia/0065ffba-31b9-4e77-972f-87aa397f966b.png)
-
 ### Action
 
 - Action đơn giản là những Event được tạo ra bằng việc sử funcion và gửi data từ app lên store. Data có thể được gửi bằng nhiều cách như submit form, gọi API hoặc thao tác của User. Mỗi action của Redux để có một thuộc tính **type** để miêu tả loại action và thuộc tính **payload** chưa thông tinh được gửi lên store. Một ví dụ đơn giản về action:
@@ -97,3 +89,20 @@ let signInInfo = {
 
 store.dispatch(signIn(signInInfo));
 ```
+
+## Mô hình hoạt động
+
+- Nguyên tắc trong việc hình thành redux:
+
+1. Tất cả các trạng thái của ứng dụng đều được lưu trữ từ 1 kho.
+2. Các trạng thái đều chỉ phải read-only
+3. Các thay đổi phải thông qua pure functions.
+
+- Cấu trúc hướng điều kiển trong redux:
+  ![alt](https://images.viblo.asia/0065ffba-31b9-4e77-972f-87aa397f966b.png)
+
+* Redux dựa theo cấu trúc flux do facebook đề xuất, theo mô hình data flow một hướng, nhằm tránh có cuộc gọi chồng chéo.
+* Tất các trạng thái đều được lưu giữ một nơi là store, các view sẽ lấy các thay đổi từ store để hiển thị.
+* Các sự kiện từ view phải gửi action để update trạng thái trong store.
+* Reducer dựa vào các action để update state trong store.
+* State là plain javascript object, không được biến đổi nó trực tiếp mà phải thông tạo object mới cho reducer trả về.
