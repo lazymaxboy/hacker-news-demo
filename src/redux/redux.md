@@ -92,17 +92,42 @@ store.dispatch(signIn(signInInfo));
 
 ## Mô hình hoạt động
 
-- Nguyên tắc trong việc hình thành redux:
+### Các khái niệm:
+
+- **Application State**: hay còn gọi là Redux Store chứa trạng thái của ứng dụng bao gồm dữ liệu từ máy chủ, kết quả tương tác/hành động của người dùng, dữ liệu từ thiết bị (GPS, Clock, Accelerometer…)
+
+- **Local State**: là trạng thái nội tại của component, sự thay đổi bất kỳ trong Local State không làm ảnh hưởng đến Application State
+
+- **Presentation Component**: là component chỉ có nhiệm vụ hiển thị, nhận tương tác từ người dùng.
+
+- **Container Component**: là component bao bọc Stateless/Presentation component và truyền dữ liệu cho các component này bằng props.
+
+- **Stateless Component**: đây là một phiên bản của Presentation Component nhưng không chứa state, thông thường được viết bằng hàm đơn thuần, mọi thứ đều được truyền thông qua function’s arguments (props).
+
+### Nguyên tắc trong việc hình thành redux:
 
 1. Tất cả các trạng thái của ứng dụng đều được lưu trữ từ 1 kho.
 2. Các trạng thái đều chỉ phải read-only
 3. Các thay đổi phải thông qua pure functions.
 
-- Cấu trúc hướng điều kiển trong redux:
-  ![alt](https://images.viblo.asia/0065ffba-31b9-4e77-972f-87aa397f966b.png)
+### Cấu trúc hướng điều kiển trong redux:
 
-* Redux dựa theo cấu trúc flux do facebook đề xuất, theo mô hình data flow một hướng, nhằm tránh có cuộc gọi chồng chéo.
-* Tất các trạng thái đều được lưu giữ một nơi là store, các view sẽ lấy các thay đổi từ store để hiển thị.
-* Các sự kiện từ view phải gửi action để update trạng thái trong store.
-* Reducer dựa vào các action để update state trong store.
-* State là plain javascript object, không được biến đổi nó trực tiếp mà phải thông tạo object mới cho reducer trả về.
+![alt](https://images.viblo.asia/0065ffba-31b9-4e77-972f-87aa397f966b.png)
+
+- Redux dựa theo cấu trúc flux do facebook đề xuất, theo mô hình data flow một hướng, nhằm tránh có cuộc gọi chồng chéo.
+- Tất các trạng thái đều được lưu giữ một nơi là store, các view sẽ lấy các thay đổi từ store để hiển thị.
+- Các sự kiện từ view phải gửi action để update trạng thái trong store.
+- Reducer dựa vào các action để update state trong store.
+- State là plain javascript object, không được biến đổi nó trực tiếp mà phải thông tạo object mới cho reducer trả về.
+
+## Redux toolkit
+
+### Mục đích
+
+- Gói `ReduxToolkit` được thiết kế để trở thành cách tiêu chuẩn để viết logic `Redux`. Ban đầu nó được tạo ra để giúp giải quyết ba mối quan tâm chung về `Redux`:
+
+* Cấu hình store Redux quá phức tạp
+* Phải thêm rất nhiều pakages để Redux làm việc
+* Redux yêu cầu quá nhiều code bản mẫu
+
+
