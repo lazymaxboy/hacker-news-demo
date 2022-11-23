@@ -122,12 +122,21 @@ store.dispatch(signIn(signInInfo));
 
 ## Redux toolkit
 
-### Mục đích
-
-- Gói `ReduxToolkit` được thiết kế để trở thành cách tiêu chuẩn để viết logic `Redux`. Ban đầu nó được tạo ra để giúp giải quyết ba mối quan tâm chung về `Redux`:
+- Gói `ReduxToolkit` được thiết kế để trở thành cách tiêu chuẩn để viết logic `Redux`.
+- Ban đầu nó được tạo ra để giúp giải quyết ba mối quan tâm chung về `Redux`:
 
 * Cấu hình store Redux quá phức tạp
 * Phải thêm rất nhiều pakages để Redux làm việc
 * Redux yêu cầu quá nhiều code bản mẫu
 
+![alt](https://images.viblo.asia/63913ebe-03db-408d-8957-378e4c2eac4b.png)
 
+### Ưu diểm
+
+- Khả năng dự báo về kết quả. (Predictability of outcome)
+- Khả năng maintain bảo trì: Nghiêm ngặt trong cấu trúc làm cho code trở nên dễ dàng bảo trì hơn.
+- Khả năng tổ chức: Redux chặt chẽ hơn về việc tổ chức code, điều đó làm cho code trở nên nhất quán và dễ dàng hơn khi làm việc nhóm.
+- Server rendering: Nó rất hữu ích đặc biệt là cho việc khởi tạo render, người dùng sẽ có trải nghiệm tốt hơn hoặc cho việc tối ưu bộ mấy tìm kiếm.
+- Developer tools: Developer có thể theo dõi mọi thứ xảy ra trong ứng dụng từ các actions đến sự thay đổi của state
+
+### Cách sử dụng
