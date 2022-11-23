@@ -4,18 +4,11 @@ import { getNews } from "./services/news.services";
 import styles from "./App.module.css";
 import { useGetNews } from "./useGetNews";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Redux from "./redux/Redux";
 
 function App() {
-  const {
-    hits,
-    page,
-    totalPage,
-    nextPage,
-    prevPage,
-    loading,
-    setHits,
-    all,
-  } = useGetNews();
+  const { hits, page, totalPage, nextPage, prevPage, loading, setHits, all } =
+    useGetNews();
 
   const search = (e) => {
     const value = e.target.value;
@@ -59,6 +52,8 @@ function App() {
         <div>
           <br />
           <HitList hits={hits} />
+          {/* reudx */}
+          <Redux></Redux>
         </div>
       )}
     </div>

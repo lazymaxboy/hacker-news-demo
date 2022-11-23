@@ -15,6 +15,12 @@
 
 ## Main concepts
 
+- Nguyên tắc trong việc hình thành redux:
+
+1. Tất cả các trạng thái của ứng dụng đều được lưu trữ từ 1 kho.
+2. Các trạng thái đều chỉ phải read-only
+3. Các thay đổi phải thông qua pure functions.
+
 ![alt](https://images.viblo.asia/0065ffba-31b9-4e77-972f-87aa397f966b.png)
 
 ### Action
@@ -49,8 +55,45 @@ dispatch(userLogin(data));
 
 ### Reducer
 
-- Vì Redux sử dụng dispatch() để thay đổi state. Tuy nhiên method này chỉ dùng để thông báo có sự thay đổi, thực tế nó không thay đổi state, các reducer mới là thứ nắm vai trò này.
+- Vì Redux sử dụng **dispatch()** để thay đổi state. Tuy nhiên method này chỉ dùng để thông báo có sự thay đổi, thực tế nó không thay đổi state, các reducer mới là thứ nắm vai trò này.
 
 - Reducer là những function lấy state hiện tại và action vừa được dispatch để trả về state mới.
 
+```js
+const handleLogin(state, action) => {
+    state.auth = action.payload;
+    return state;
+};
+```
+
+- Khi build những ứng dụng lớn, chúng ta nên sử dụng method **combineReducers()** của Redux để kết hợp tất cả các reducer lại thành một list các reducer, mỗi một reducer xử lý state của một feature cụ thể.
+
+```js
+const rootReducer = combineReducers({
+  signUp: signUp,
+  signIn: signIn,
+  editProfile: editProfile,
+});
+```
+
+- Các reducer neên được việc dưới dạng pure function. Một số đặc điểm của chúng:
+
+* Không gọi tới API hoặc DB
+* Các giá trị trả về chỉ được phụ thuộc vào gía trị của tham số truyền vào.
+* Các tham số phải immutable
+
 ### Store
+
+- Store chính là trái tim của Redux. Đây là "single source of truth" nắm giữ toàn bộ state của app và cung cấp những method để thao tác với state, dispatch action, ... Mỗi action được dispatch sẽ trả về state mới cho store bằng reducer.
+
+```js
+import { createStore } from‘ redux’;
+
+let store = createStore(indexReducer);
+let signInInfo = {
+    username: 'example',
+    password: 'Aa@123456'
+};
+
+store.dispatch(signIn(signInInfo));
+```
